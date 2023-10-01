@@ -12,10 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const create_service_1 = require("../../service/image/create.service");
 class ImageController {
     create(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
             const { base64, IdPoster } = req.body;
             try {
-                const imageCreate = yield create_service_1.ImageCreateService.HandleExecute(base64, IdPoster);
+                const IdUser = (_a = req === null || req === void 0 ? void 0 : req.User) === null || _a === void 0 ? void 0 : _a.Id;
+                const imageCreate = yield create_service_1.ImageCreateService.HandleExecute(base64, IdPoster, IdUser);
                 if (imageCreate) {
                     return res.status(200).json({
                         Message: "Uploado realizado com sucesso",
@@ -28,7 +30,7 @@ class ImageController {
             }
             catch ({ error }) {
                 return res.status(500).json({
-                    Message: error.message,
+                    Message: error,
                     Date: new Date()
                 });
             }

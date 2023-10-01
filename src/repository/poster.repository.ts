@@ -32,7 +32,7 @@ export default class PosterRepository extends IPostAbstractRepository {
     };
     findOne = async (Id:number) : Promise<IPoster | null>=> {
         return await Poster.findByPk(Id,{
-            attributes:{exclude:["IdUser","updatedAt"]},
+            attributes:{exclude:["updatedAt"]},
             include:[
             {model:Image, attributes:{exclude:['createdAt','updatedAt','IdPoster']}},
             {model:User,attributes:{exclude:['createdAt','updatedAt','City','Email','Password',]} }

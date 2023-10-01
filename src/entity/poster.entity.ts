@@ -12,6 +12,7 @@ export interface IPoster {
     PhoneCustom?:string;
     City?:string;
     Value?:string;
+    createdAt?:string;
     IdUser?:number;
     User?:{Id:number};
     Category?:string;

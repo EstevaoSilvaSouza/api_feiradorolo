@@ -108,7 +108,7 @@ class PosterController {
                 }
                 return res.status(200).json({
                     Message: 'Poster encontrado',
-                    Data: find
+                    Data: find,
                 });
             }
             catch ({ error }) {

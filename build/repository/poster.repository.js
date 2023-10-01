@@ -44,7 +44,7 @@ class PosterRepository extends poster_interface_1.IPostAbstractRepository {
         });
         this.findOne = (Id) => __awaiter(this, void 0, void 0, function* () {
             return yield poster_entity_1.default.findByPk(Id, {
-                attributes: { exclude: ["IdUser", "updatedAt"] },
+                attributes: { exclude: ["updatedAt"] },
                 include: [
                     { model: image_entity_1.default, attributes: { exclude: ['createdAt', 'updatedAt', 'IdPoster'] } },
                     { model: user_entity_1.default, attributes: { exclude: ['createdAt', 'updatedAt', 'City', 'Email', 'Password',] } }

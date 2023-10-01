@@ -17,13 +17,25 @@ const image_repository_1 = require("../../repository/image.repository");
 const imgbb_uploader_1 = __importDefault(require("imgbb-uploader"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const objectfactory_1 = __importDefault(require("../../type/objectfactory"));
+const findone_service_1 = __importDefault(require("../poster/findone.service"));
 dotenv_1.default.config();
 class CreateImage {
     constructor(ImageRepo) {
         this.ImageRepo = ImageRepo;
-        this.HandleExecute = (base64, IdPoster) => __awaiter(this, void 0, void 0, function* () {
+        this.HandleExecute = (base64, IdPoster, IdUser) => __awaiter(this, void 0, void 0, function* () {
             if (!base64 || !IdPoster) {
-                throw { error: 'Base64 invalido/Poster invalido' };
+                throw ({ error: 'Base64 invalido/Poster invalido' });
+            }
+            const findPoster = yield findone_service_1.default.executeHandle(IdPoster);
+            if (!findPoster) {
+                throw ({ error: 'Poster invalido' });
+            }
+            if (findPoster.IdUser !== IdUser) {
+                console.log(IdUser);
+                console.log(findPoster === null || findPoster === void 0 ? void 0 : findPoster.IdUser);
+                console.log(findPoster);
+                console.log(Number(findPoster.IdUser) !== Number(IdUser));
+                throw ({ error: 'Sem permissão para adicionar nesse poster' });
             }
             const options = {
                 apiKey: process.env.IMGBB_API_KEY,

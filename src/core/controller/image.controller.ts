@@ -6,9 +6,10 @@ import { ImageCreateService } from "../../service/image/create.service";
 export default class ImageController {
     async create(req:Request,res:Response){
         const {base64,IdPoster} = req.body;
-
+        
         try{
-            const imageCreate = await ImageCreateService.HandleExecute(base64,IdPoster);
+            const IdUser = req?.User?.Id;
+            const imageCreate = await ImageCreateService.HandleExecute(base64,IdPoster,IdUser);
             if(imageCreate){
                 return res.status(200).json({
                     Message:"Uploado realizado com sucesso",
@@ -21,7 +22,7 @@ export default class ImageController {
         }
         catch({error}:any){
             return res.status(500).json({
-                Message:error.message,
+                Message:error,
                 Date:new Date()
             })
         }
