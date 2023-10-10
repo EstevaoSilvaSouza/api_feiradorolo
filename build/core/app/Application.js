@@ -18,7 +18,9 @@ class Application {
             this.App.use((0, cors_1.default)({
                 origin: "https://feiradorolo.vercel.app",
                 methods: 'GET,POST',
-                allowedHeaders: ['Authorization', 'Content-Type'], // Adicione cabeçalhos personalizados
+                allowedHeaders: ['Authorization', 'Content-Type'],
+                exposedHeaders: ['Authorization'],
+                maxAge: 3600,
             }));
             this.App.use(express_1.default.json({ limit: '20mb' }));
             this.App.use(express_1.default.urlencoded({ extended: true }));
