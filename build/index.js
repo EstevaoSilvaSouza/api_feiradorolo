@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Application_1 = __importDefault(require("./core/app/Application"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const data_1 = require("./entity/data");
-const poster_entity_1 = __importDefault(require("./entity/poster.entity"));
 dotenv_1.default.config();
 class Main {
     constructor() {
@@ -25,7 +24,7 @@ class Main {
                 this.server = new Application_1.default().App.listen(this.port, () => __awaiter(this, void 0, void 0, function* () {
                     console.log(`Ligado servidor http://localhost:${this.port}`);
                     yield data_1.DataConnection.authenticate().then(() => {
-                        poster_entity_1.default.sync({ alter: true });
+                        //Poster.sync({alter:true})
                         console.log('Banco de dados [ ONLINE ]');
                     });
                 }));

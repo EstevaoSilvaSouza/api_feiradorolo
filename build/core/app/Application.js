@@ -15,8 +15,12 @@ class Application {
             return (0, express_1.default)();
         };
         this.middleware = () => {
-            this.App.use((0, cors_1.default)());
-            this.App.use(express_1.default.json({ limit: '32mb' }));
+            this.App.use((0, cors_1.default)({
+                origin: "https://feiradorolo.vercel.app",
+                methods: 'GET,POST',
+                allowedHeaders: ['Authorization', 'Content-Type'], // Adicione cabeçalhos personalizados
+            }));
+            this.App.use(express_1.default.json({ limit: '20mb' }));
             this.App.use(express_1.default.urlencoded({ extended: true }));
             this.App.use(express_1.default.raw());
         };

@@ -19,11 +19,15 @@ export default class Application {
     }
 
     private middleware = () : void => {
-        this.App.use(Cors());
-        this.App.use(express.json({limit:'32mb'}));
+        this.App.use(Cors({
+            origin: "https://feiradorolo.vercel.app",
+            methods: 'GET,POST', // Adicione outros métodos, se necessário
+            allowedHeaders: ['Authorization', 'Content-Type'], // Adicione cabeçalhos personalizados
+        }));
+    
+        this.App.use(express.json({limit:'20mb'}));
         this.App.use(express.urlencoded({extended:true}));
         this.App.use(express.raw());
-    
     }
 
     private routers = () => {
