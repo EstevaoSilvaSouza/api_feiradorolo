@@ -13,6 +13,7 @@ export interface IPoster {
     City?:string;
     Value?:string;
     createdAt?:string;
+    Count?:number;
     IdUser?:number;
     User?:{Id:number};
     Category?:string;
@@ -26,6 +27,7 @@ export default class Poster extends Model<IPoster> {
     declare  PhoneCustom:string;
     declare  Value:string;
     declare Category:string;
+    declare Count:number;
 }
 
 Poster.init({
@@ -62,6 +64,10 @@ Poster.init({
     },
     Category:{
         type:DataTypes.STRING,
+        allowNull:false
+    },
+    Count:{
+        type:DataTypes.INTEGER,
         allowNull:false
     }
 }, {

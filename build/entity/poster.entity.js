@@ -44,6 +44,10 @@ Poster.init({
     Category: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
+    },
+    Count: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     sequelize: data_1.DataConnection,

@@ -2,6 +2,7 @@ import { IncomingMessage, Server, ServerResponse } from 'http';
 import Application from './core/app/Application';
 import dotenv from 'dotenv';
 import { DataConnection } from './entity/data';
+import Poster from './entity/poster.entity';
 dotenv.config();
 
 class Main {
@@ -12,8 +13,8 @@ class Main {
         try{
             this.server =  new Application().App.listen(this.port, async () => {
                 console.log(`Ligado servidor http://localhost:${this.port}`)
-                await DataConnection.authenticate().then( () => {
-                    //await Image.sync({alter:true})
+                await DataConnection.authenticate().then(() => {
+                    //Poster.sync({alter:true})
                     console.log('Banco de dados [ ONLINE ]')
                 })
             })

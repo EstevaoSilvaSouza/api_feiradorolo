@@ -1,3 +1,4 @@
+import { IPoster } from "../entity/poster.entity";
 import { IUser } from "../entity/user.entity";
 
 
@@ -8,7 +9,7 @@ export interface ParamsList {
 export interface IResponseList {
     CountPage:number;
     Count:number;
-    Data:IUser[] | null;
+    Data:IUser[] | IPoster[] | null;
 }
 export const objectParams = (params:any):ParamsList => {
 
