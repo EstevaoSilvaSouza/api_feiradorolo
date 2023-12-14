@@ -7,7 +7,7 @@ export interface IimageRepository {
     delete:(Id:number) => Promise<number | null>;
     list:() => Promise<Iimage[] | null>;
     findOne:(Id:number) => Promise<Iimage | null>;
-    findWithId: (Id:number) => Promise<Iimage | null>;
+    findWithId: (Id: number) => Promise<Iimage | null>;
 }
 
 export abstract class IimageAbstractRepository implements IimageRepository {

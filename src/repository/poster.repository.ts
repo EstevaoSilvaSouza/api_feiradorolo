@@ -8,7 +8,15 @@ import { IPostAbstractRepository } from "./poster.interface";
 
 export default class PosterRepository extends IPostAbstractRepository {
     create = async (payload: IPoster) : Promise<IPoster | null> => {
-        return await Poster.create(payload);
+        try{
+            const t = await Poster.create({...payload,['Count']:0});
+            return t
+        }
+        catch(error:any){
+            return error;
+        }
+     
+         
     };
     update = async (payload: IPoster) : Promise<number[] | null> => {
         return await Poster.update(payload,{where:{Id:payload.Id}});
@@ -59,6 +67,9 @@ export default class PosterRepository extends IPostAbstractRepository {
         const Carro = await Poster.findAll({where:{Category:'Carro'}, order:[['Id','DESC']], limit:10, include:[
             {model:Image, attributes:{exclude:['createdAt','updatedAt','IdPoster']}},
         ]})
+        const CelularTablet = await Poster.findAll({where:{Category:'Celular e Tablet'}, order:[['Id','DESC']], limit:10, include:[
+            {model:Image, attributes:{exclude:['createdAt','updatedAt','IdPoster']}},
+        ]})
         const Moto = await Poster.findAll({where:{Category:'Moto'},order:[['Id','DESC']],limit:10, include:[
             {model:Image, attributes:{exclude:['createdAt','updatedAt','IdPoster']}},
         ]})
@@ -70,7 +81,7 @@ export default class PosterRepository extends IPostAbstractRepository {
         ]})
         return {
             Automoveis:[...Carro,...Moto,...CAMINHAO],
-            TecnologiaeInformatica:TecnologiaeInformatica
+            TecnologiaeInformatica:[...TecnologiaeInformatica,...CelularTablet]
         };
     };
 }

@@ -18,7 +18,7 @@ class PosterController {
             return res.status(200).json(NewPoster);
         }
         catch({error}:any){
-            return res.status(500).json({error,Date:new Date()});
+            return res.status(500).json({error:error,Date:new Date()});
         }
     }
     async list(req:Request,res:Response) {

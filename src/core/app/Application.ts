@@ -20,7 +20,7 @@ export default class Application {
 
     private middleware = () : void => {
         this.App.use(Cors({
-            origin: "https://feiradorolo.vercel.app", // Defina a origem do seu site
+            origin: "https://feiradorolo.vercel.app",
             methods: 'GET,POST',
             allowedHeaders: ['Authorization', 'Content-Type'],
             exposedHeaders: ['Authorization'],
